@@ -656,6 +656,7 @@ class ImagePainterState extends State<ImagePainter> {
         child: SizedBox(
           child: Wrap(
             children: paintModes(textDelegate)
+                .take(7)
                 .map(
                   (item) => SelectionItems(
                     data: item,
@@ -783,7 +784,7 @@ class ImagePainterState extends State<ImagePainter> {
   Widget _buildControls() {
     return Container(
       padding: const EdgeInsets.all(4),
-      color: Colors.grey[200],
+      color: Colors.transparent, //grey[200],
       child: Row(
         children: [
           AnimatedBuilder(
@@ -797,7 +798,7 @@ class ImagePainterState extends State<ImagePainter> {
                 shape: ContinuousRectangleBorder(
                   borderRadius: BorderRadius.circular(40),
                 ),
-                icon: Icon(icon, color: Colors.grey[700]),
+                icon: Icon(icon, color: Colors.white),
                 itemBuilder: (_) => [_showOptionsRow()],
               );
             },
@@ -816,7 +817,7 @@ class ImagePainterState extends State<ImagePainter> {
                       padding: const EdgeInsets.all(2.0),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        border: Border.all(color: Colors.grey),
+                        border: Border.all(color: Colors.white70),
                         color: _controller.color,
                       ),
                     ),
@@ -829,8 +830,7 @@ class ImagePainterState extends State<ImagePainter> {
             shape: ContinuousRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            icon:
-                widget.brushIcon ?? Icon(Icons.brush, color: Colors.grey[700]),
+            icon: widget.brushIcon ?? Icon(Icons.brush, color: Colors.white),
             itemBuilder: (_) => [_showRangeSlider()],
           ),
           IconButton(
@@ -838,13 +838,12 @@ class ImagePainterState extends State<ImagePainter> {
           const Spacer(),
           IconButton(
             tooltip: textDelegate.undo,
-            icon: widget.undoIcon ?? Icon(Icons.reply, color: Colors.grey[700]),
+            icon: widget.undoIcon ?? Icon(Icons.reply, color: Colors.white),
             onPressed: () => _controller.undo(),
           ),
           IconButton(
             tooltip: textDelegate.clearAllProgress,
-            icon: widget.clearAllIcon ??
-                Icon(Icons.clear, color: Colors.grey[700]),
+            icon: widget.clearAllIcon ?? Icon(Icons.clear, color: Colors.white),
             onPressed: () => _controller.clear(),
           ),
         ],

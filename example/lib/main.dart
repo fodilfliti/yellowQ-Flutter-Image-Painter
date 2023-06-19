@@ -82,7 +82,7 @@ class _ImagePainterExampleState extends State<ImagePainterExample> {
         key: _imageKey,
         scalable: true,
         initialStrokeWidth: 2,
-        textDelegate: DutchTextDelegate(),
+        // textDelegate: DutchTextDelegate(),
         initialColor: Colors.green,
         initialPaintMode: PaintMode.line,
       ),
