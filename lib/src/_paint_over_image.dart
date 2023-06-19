@@ -486,6 +486,10 @@ class ImagePainterState extends State<ImagePainter> {
       width: widget.width ?? double.maxFinite,
       child: Column(
         children: [
+          if (widget.controlsAtTop)
+            SizedBox(
+              height: 10,
+            ),
           if (widget.controlsAtTop) _buildControls(),
           Expanded(
             child: FittedBox(
