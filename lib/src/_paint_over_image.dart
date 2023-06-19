@@ -798,7 +798,13 @@ class ImagePainterState extends State<ImagePainter> {
                 shape: ContinuousRectangleBorder(
                   borderRadius: BorderRadius.circular(40),
                 ),
-                icon: Icon(icon, color: Colors.white),
+                icon: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 4),
+                    margin: EdgeInsets.only(left: 8),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Color.fromARGB(255, 57, 55, 55)),
+                    child: Icon(icon, color: Colors.white)),
                 itemBuilder: (_) => [_showOptionsRow()],
               );
             },
@@ -812,15 +818,17 @@ class ImagePainterState extends State<ImagePainter> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 tooltip: textDelegate.changeColor,
-                icon: widget.colorIcon ??
-                    Container(
-                      padding: const EdgeInsets.all(2.0),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.white70),
-                        color: _controller.color,
+                icon: Container(
+                  child: widget.colorIcon ??
+                      Container(
+                        padding: const EdgeInsets.all(2.0),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.white70),
+                          color: _controller.color,
+                        ),
                       ),
-                    ),
+                ),
                 itemBuilder: (_) => [_showColorPicker()],
               );
             },
@@ -830,21 +838,48 @@ class ImagePainterState extends State<ImagePainter> {
             shape: ContinuousRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            icon: widget.brushIcon ?? Icon(Icons.brush, color: Colors.white),
+            icon: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                margin: EdgeInsets.only(left: 8),
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color.fromARGB(255, 57, 55, 55)),
+                child:
+                    widget.brushIcon ?? Icon(Icons.brush, color: Colors.white)),
             itemBuilder: (_) => [_showRangeSlider()],
           ),
-          IconButton(
-              icon: const Icon(Icons.text_format), onPressed: _openTextDialog),
-          const Spacer(),
-          IconButton(
-            tooltip: textDelegate.undo,
-            icon: widget.undoIcon ?? Icon(Icons.reply, color: Colors.white),
-            onPressed: () => _controller.undo(),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            margin: EdgeInsets.only(left: 8),
+            decoration: BoxDecoration(
+                shape: BoxShape.circle, color: Color.fromARGB(255, 57, 55, 55)),
+            child: IconButton(
+                icon: const Icon(Icons.text_format),
+                onPressed: _openTextDialog),
           ),
-          IconButton(
-            tooltip: textDelegate.clearAllProgress,
-            icon: widget.clearAllIcon ?? Icon(Icons.clear, color: Colors.white),
-            onPressed: () => _controller.clear(),
+          const Spacer(),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            margin: EdgeInsets.only(left: 8),
+            decoration: BoxDecoration(
+                shape: BoxShape.circle, color: Color.fromARGB(255, 57, 55, 55)),
+            child: IconButton(
+              tooltip: textDelegate.undo,
+              icon: widget.undoIcon ?? Icon(Icons.reply, color: Colors.white),
+              onPressed: () => _controller.undo(),
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            margin: EdgeInsets.only(left: 8),
+            decoration: BoxDecoration(
+                shape: BoxShape.circle, color: Color.fromARGB(255, 57, 55, 55)),
+            child: IconButton(
+              tooltip: textDelegate.clearAllProgress,
+              icon:
+                  widget.clearAllIcon ?? Icon(Icons.clear, color: Colors.white),
+              onPressed: () => _controller.clear(),
+            ),
           ),
         ],
       ),
