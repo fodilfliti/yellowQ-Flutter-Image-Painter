@@ -19,76 +19,76 @@ export '_image_painter.dart';
 ///[ImagePainter] widget.
 @immutable
 class ImagePainter extends StatefulWidget {
-  const ImagePainter._({
-    Key? key,
-    this.assetPath,
-    this.networkUrl,
-    this.byteArray,
-    this.file,
-    this.height,
-    this.width,
-    this.placeHolder,
-    this.isScalable,
-    this.brushIcon,
-    this.clearAllIcon,
-    this.colorIcon,
-    this.undoIcon,
-    this.isSignature = false,
-    this.controlsAtTop = true,
-    this.signatureBackgroundColor,
-    this.colors,
-    this.initialPaintMode,
-    this.initialStrokeWidth,
-    this.initialColor,
-    this.onColorChanged,
-    this.onStrokeWidthChanged,
-    this.onPaintModeChanged,
-    this.textDelegate,
-  }) : super(key: key);
+  const ImagePainter._(
+      {Key? key,
+      this.assetPath,
+      this.networkUrl,
+      this.byteArray,
+      this.file,
+      this.height,
+      this.width,
+      this.placeHolder,
+      this.isScalable,
+      this.brushIcon,
+      this.clearAllIcon,
+      this.colorIcon,
+      this.undoIcon,
+      this.isSignature = false,
+      this.controlsAtTop = true,
+      this.signatureBackgroundColor,
+      this.colors,
+      this.initialPaintMode,
+      this.initialStrokeWidth,
+      this.initialColor,
+      this.onColorChanged,
+      this.onStrokeWidthChanged,
+      this.onPaintModeChanged,
+      this.textDelegate,
+      this.onSave})
+      : super(key: key);
 
   ///Constructor for loading image from network url.
-  factory ImagePainter.network(
-    String url, {
-    required Key key,
-    double? height,
-    double? width,
-    Widget? placeholderWidget,
-    bool? scalable,
-    List<Color>? colors,
-    Widget? brushIcon,
-    Widget? undoIcon,
-    Widget? clearAllIcon,
-    Widget? colorIcon,
-    PaintMode? initialPaintMode,
-    double? initialStrokeWidth,
-    Color? initialColor,
-    ValueChanged<PaintMode>? onPaintModeChanged,
-    ValueChanged<Color>? onColorChanged,
-    ValueChanged<double>? onStrokeWidthChanged,
-    TextDelegate? textDelegate,
-    bool? controlsAtTop,
-  }) {
+  factory ImagePainter.network(String url,
+      {required Key key,
+      double? height,
+      double? width,
+      Widget? placeholderWidget,
+      bool? scalable,
+      List<Color>? colors,
+      Widget? brushIcon,
+      Widget? undoIcon,
+      Widget? clearAllIcon,
+      Widget? colorIcon,
+      PaintMode? initialPaintMode,
+      double? initialStrokeWidth,
+      Color? initialColor,
+      ValueChanged<PaintMode>? onPaintModeChanged,
+      ValueChanged<Color>? onColorChanged,
+      ValueChanged<double>? onStrokeWidthChanged,
+      TextDelegate? textDelegate,
+      bool? controlsAtTop,
+      Function? onSave}) {
     return ImagePainter._(
-      key: key,
-      networkUrl: url,
-      height: height,
-      width: width,
-      placeHolder: placeholderWidget,
-      isScalable: scalable,
-      colors: colors,
-      brushIcon: brushIcon,
-      undoIcon: undoIcon,
-      colorIcon: colorIcon,
-      clearAllIcon: clearAllIcon,
-      initialPaintMode: initialPaintMode,
-      initialColor: initialColor,
-      initialStrokeWidth: initialStrokeWidth,
-      onPaintModeChanged: onPaintModeChanged,
-      onColorChanged: onColorChanged,
-      onStrokeWidthChanged: onStrokeWidthChanged,
-      textDelegate: textDelegate,
-      controlsAtTop: controlsAtTop ?? true,
-    );
+        key: key,
+        networkUrl: url,
+        height: height,
+        width: width,
+        placeHolder: placeholderWidget,
+        isScalable: scalable,
+        colors: colors,
+        brushIcon: brushIcon,
+        undoIcon: undoIcon,
+        colorIcon: colorIcon,
+        clearAllIcon: clearAllIcon,
+        initialPaintMode: initialPaintMode,
+        initialColor: initialColor,
+        initialStrokeWidth: initialStrokeWidth,
+        onPaintModeChanged: onPaintModeChanged,
+        onColorChanged: onColorChanged,
+        onStrokeWidthChanged: onStrokeWidthChanged,
+        textDelegate: textDelegate,
+        controlsAtTop: controlsAtTop ?? true,
+        onSave: onSave);
   }
 
   ///Constructor for loading image from assetPath.
@@ -112,28 +112,29 @@ class ImagePainter extends StatefulWidget {
     ValueChanged<double>? onStrokeWidthChanged,
     TextDelegate? textDelegate,
     bool? controlsAtTop,
+    Function? onSave,
   }) {
     return ImagePainter._(
-      key: key,
-      assetPath: path,
-      height: height,
-      width: width,
-      isScalable: scalable ?? false,
-      placeHolder: placeholderWidget,
-      colors: colors,
-      brushIcon: brushIcon,
-      undoIcon: undoIcon,
-      colorIcon: colorIcon,
-      clearAllIcon: clearAllIcon,
-      initialPaintMode: initialPaintMode,
-      initialColor: initialColor,
-      initialStrokeWidth: initialStrokeWidth,
-      onPaintModeChanged: onPaintModeChanged,
-      onColorChanged: onColorChanged,
-      onStrokeWidthChanged: onStrokeWidthChanged,
-      textDelegate: textDelegate,
-      controlsAtTop: controlsAtTop ?? true,
-    );
+        key: key,
+        assetPath: path,
+        height: height,
+        width: width,
+        isScalable: scalable ?? false,
+        placeHolder: placeholderWidget,
+        colors: colors,
+        brushIcon: brushIcon,
+        undoIcon: undoIcon,
+        colorIcon: colorIcon,
+        clearAllIcon: clearAllIcon,
+        initialPaintMode: initialPaintMode,
+        initialColor: initialColor,
+        initialStrokeWidth: initialStrokeWidth,
+        onPaintModeChanged: onPaintModeChanged,
+        onColorChanged: onColorChanged,
+        onStrokeWidthChanged: onStrokeWidthChanged,
+        textDelegate: textDelegate,
+        controlsAtTop: controlsAtTop ?? true,
+        onSave: onSave);
   }
 
   ///Constructor for loading image from [File].
@@ -157,28 +158,29 @@ class ImagePainter extends StatefulWidget {
     ValueChanged<double>? onStrokeWidthChanged,
     TextDelegate? textDelegate,
     bool? controlsAtTop,
+    Function? onSave,
   }) {
     return ImagePainter._(
-      key: key,
-      file: file,
-      height: height,
-      width: width,
-      placeHolder: placeholderWidget,
-      colors: colors,
-      isScalable: scalable ?? false,
-      brushIcon: brushIcon,
-      undoIcon: undoIcon,
-      colorIcon: colorIcon,
-      clearAllIcon: clearAllIcon,
-      initialPaintMode: initialPaintMode,
-      initialColor: initialColor,
-      initialStrokeWidth: initialStrokeWidth,
-      onPaintModeChanged: onPaintModeChanged,
-      onColorChanged: onColorChanged,
-      onStrokeWidthChanged: onStrokeWidthChanged,
-      textDelegate: textDelegate,
-      controlsAtTop: controlsAtTop ?? true,
-    );
+        key: key,
+        file: file,
+        height: height,
+        width: width,
+        placeHolder: placeholderWidget,
+        colors: colors,
+        isScalable: scalable ?? false,
+        brushIcon: brushIcon,
+        undoIcon: undoIcon,
+        colorIcon: colorIcon,
+        clearAllIcon: clearAllIcon,
+        initialPaintMode: initialPaintMode,
+        initialColor: initialColor,
+        initialStrokeWidth: initialStrokeWidth,
+        onPaintModeChanged: onPaintModeChanged,
+        onColorChanged: onColorChanged,
+        onStrokeWidthChanged: onStrokeWidthChanged,
+        textDelegate: textDelegate,
+        controlsAtTop: controlsAtTop ?? true,
+        onSave: onSave);
   }
 
   ///Constructor for loading image from memory.
@@ -202,12 +204,14 @@ class ImagePainter extends StatefulWidget {
     ValueChanged<double>? onStrokeWidthChanged,
     TextDelegate? textDelegate,
     bool? controlsAtTop,
+    Function? onSave,
   }) {
     return ImagePainter._(
       key: key,
       byteArray: byteArray,
       height: height,
       width: width,
+      onSave: onSave,
       placeHolder: placeholderWidget,
       isScalable: scalable ?? false,
       colors: colors,
@@ -227,22 +231,22 @@ class ImagePainter extends StatefulWidget {
   }
 
   ///Constructor for signature painting.
-  factory ImagePainter.signature({
-    required Key key,
-    Color? signatureBgColor,
-    double? height,
-    double? width,
-    List<Color>? colors,
-    Widget? brushIcon,
-    Widget? undoIcon,
-    Widget? clearAllIcon,
-    Widget? colorIcon,
-    ValueChanged<PaintMode>? onPaintModeChanged,
-    ValueChanged<Color>? onColorChanged,
-    ValueChanged<double>? onStrokeWidthChanged,
-    TextDelegate? textDelegate,
-    bool? controlsAtTop,
-  }) {
+  factory ImagePainter.signature(
+      {required Key key,
+      Color? signatureBgColor,
+      double? height,
+      double? width,
+      List<Color>? colors,
+      Widget? brushIcon,
+      Widget? undoIcon,
+      Widget? clearAllIcon,
+      Widget? colorIcon,
+      ValueChanged<PaintMode>? onPaintModeChanged,
+      ValueChanged<Color>? onColorChanged,
+      ValueChanged<double>? onStrokeWidthChanged,
+      TextDelegate? textDelegate,
+      bool? controlsAtTop,
+      Function? onSave}) {
     return ImagePainter._(
       key: key,
       height: height,
@@ -260,6 +264,7 @@ class ImagePainter extends StatefulWidget {
       onStrokeWidthChanged: onStrokeWidthChanged,
       textDelegate: textDelegate,
       controlsAtTop: controlsAtTop ?? true,
+      onSave: onSave,
     );
   }
 
@@ -328,6 +333,7 @@ class ImagePainter extends StatefulWidget {
 
   final ValueChanged<PaintMode>? onPaintModeChanged;
 
+  final Function? onSave;
   //the text delegate
   final TextDelegate? textDelegate;
 
@@ -793,19 +799,26 @@ class ImagePainterState extends State<ImagePainter> {
               final icon = paintModes(textDelegate)
                   .firstWhere((item) => item.mode == _controller.mode)
                   .icon;
-              return PopupMenuButton(
-                tooltip: textDelegate.changeMode,
-                shape: ContinuousRectangleBorder(
-                  borderRadius: BorderRadius.circular(40),
+              return Container(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                margin: EdgeInsets.only(left: 8),
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color.fromARGB(255, 57, 55, 55)),
+                child: PopupMenuButton(
+                  tooltip: textDelegate.changeMode,
+                  shape: ContinuousRectangleBorder(
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                  icon: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 4),
+                      margin: EdgeInsets.only(left: 8),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color.fromARGB(255, 57, 55, 55)),
+                      child: Icon(icon, color: Colors.white)),
+                  itemBuilder: (_) => [_showOptionsRow()],
                 ),
-                icon: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 4),
-                    margin: EdgeInsets.only(left: 8),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Color.fromARGB(255, 57, 55, 55)),
-                    child: Icon(icon, color: Colors.white)),
-                itemBuilder: (_) => [_showOptionsRow()],
               );
             },
           ),
@@ -833,20 +846,26 @@ class ImagePainterState extends State<ImagePainter> {
               );
             },
           ),
-          PopupMenuButton(
-            tooltip: textDelegate.changeBrushSize,
-            shape: ContinuousRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            margin: EdgeInsets.only(left: 8),
+            decoration: BoxDecoration(
+                shape: BoxShape.circle, color: Color.fromARGB(255, 57, 55, 55)),
+            child: PopupMenuButton(
+              tooltip: textDelegate.changeBrushSize,
+              shape: ContinuousRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              icon: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  margin: EdgeInsets.only(left: 8),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color.fromARGB(255, 57, 55, 55)),
+                  child: widget.brushIcon ??
+                      Icon(Icons.brush, color: Colors.white)),
+              itemBuilder: (_) => [_showRangeSlider()],
             ),
-            icon: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 4),
-                margin: EdgeInsets.only(left: 8),
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color.fromARGB(255, 57, 55, 55)),
-                child:
-                    widget.brushIcon ?? Icon(Icons.brush, color: Colors.white)),
-            itemBuilder: (_) => [_showRangeSlider()],
           ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -854,7 +873,8 @@ class ImagePainterState extends State<ImagePainter> {
             decoration: BoxDecoration(
                 shape: BoxShape.circle, color: Color.fromARGB(255, 57, 55, 55)),
             child: IconButton(
-                icon: const Icon(Icons.text_format),
+                icon:
+                    const Icon(Icons.text_fields_rounded, color: Colors.white),
                 onPressed: _openTextDialog),
           ),
           const Spacer(),
@@ -878,7 +898,9 @@ class ImagePainterState extends State<ImagePainter> {
               tooltip: textDelegate.clearAllProgress,
               icon:
                   widget.clearAllIcon ?? Icon(Icons.clear, color: Colors.white),
-              onPressed: () => _controller.clear(),
+              onPressed: () => widget.onSave != null
+                  ? widget.onSave!()
+                  : _controller.clear(),
             ),
           ),
         ],
