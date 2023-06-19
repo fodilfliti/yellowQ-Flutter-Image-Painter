@@ -836,14 +836,7 @@ class ImagePainterState extends State<ImagePainter> {
               shape: ContinuousRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
-              icon: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
-                  margin: EdgeInsets.only(left: 8),
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Color.fromARGB(255, 57, 55, 55)),
-                  child: widget.brushIcon ??
-                      Icon(Icons.brush, color: Colors.white)),
+              icon: widget.brushIcon ?? Icon(Icons.brush, color: Colors.white),
               itemBuilder: (_) => [_showRangeSlider()],
             ),
           ),
