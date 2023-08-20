@@ -798,7 +798,6 @@ class ImagePainterState extends State<ImagePainter> {
       child: FittedBox(
         fit: BoxFit.scaleDown,
         child: Container(
-          width: widget.width ?? double.maxFinite,
           height: 80,
           padding: const EdgeInsets.all(4),
           color: Colors.transparent,
