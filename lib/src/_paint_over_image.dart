@@ -797,6 +797,7 @@ class ImagePainterState extends State<ImagePainter> {
       width: widget.height ?? double.maxFinite,
       color: Colors.transparent,
       child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
         child: Row(
           children: [
             AnimatedBuilder(
