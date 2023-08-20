@@ -793,7 +793,7 @@ class ImagePainterState extends State<ImagePainter> {
 
   Widget _buildControls() {
     return SizedBox(
-      width: widget.width ?? double.maxFinite,
+      width: MediaQuery.of(context).size.width,
       height: 100,
       child: Container(
         padding: const EdgeInsets.all(4),
