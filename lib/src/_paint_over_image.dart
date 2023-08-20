@@ -792,8 +792,8 @@ class ImagePainterState extends State<ImagePainter> {
   }
 
   Widget _buildControls() {
-    return FractionallySizedBox(
-      widthFactor: 1,
+    return SizedBox(
+      width: widget.width ?? double.maxFinite,
       child: FittedBox(
         fit: BoxFit.scaleDown,
         child: Container(
