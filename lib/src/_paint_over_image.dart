@@ -881,7 +881,7 @@ class ImagePainterState extends State<ImagePainter> {
                 },
               ),
             ),
-            const Spacer(),
+            // const Spacer(),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 4),
               margin: EdgeInsets.only(left: 8),
