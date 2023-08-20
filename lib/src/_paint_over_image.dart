@@ -794,9 +794,12 @@ class ImagePainterState extends State<ImagePainter> {
   Widget _buildControls() {
     return SizedBox(
       width: widget.width ?? double.maxFinite,
+      height: 80,
       child: FittedBox(
         fit: BoxFit.scaleDown,
         child: Container(
+          width: widget.width ?? double.maxFinite,
+          height: 80,
           padding: const EdgeInsets.all(4),
           color: Colors.transparent,
           child: Row(
