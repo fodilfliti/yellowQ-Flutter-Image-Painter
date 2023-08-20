@@ -490,7 +490,7 @@ class ImagePainterState extends State<ImagePainter> {
             SizedBox(
               height: 10,
             ),
-          if (widget.controlsAtTop) _buildControls(),
+          // if (widget.controlsAtTop) _buildControls(),
           Expanded(
             child: FittedBox(
               alignment: FractionalOffset.center,
@@ -521,7 +521,7 @@ class ImagePainterState extends State<ImagePainter> {
               ),
             ),
           ),
-          if (!widget.controlsAtTop) _buildControls(),
+          // if (!widget.controlsAtTop) _buildControls(),
           SizedBox(height: MediaQuery.of(context).padding.bottom)
         ],
       ),
