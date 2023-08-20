@@ -490,7 +490,7 @@ class ImagePainterState extends State<ImagePainter> {
             SizedBox(
               height: 10,
             ),
-          // if (widget.controlsAtTop) _buildControls(),
+          if (widget.controlsAtTop) _buildControls(),
           Expanded(
             child: FittedBox(
               alignment: FractionalOffset.center,
@@ -794,6 +794,7 @@ class ImagePainterState extends State<ImagePainter> {
   Widget _buildControls() {
     return Container(
       padding: const EdgeInsets.all(4),
+      width: 200,
       color: Colors.transparent, //grey[200],
       child: Row(
         children: [
