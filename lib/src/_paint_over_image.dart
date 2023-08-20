@@ -794,123 +794,113 @@ class ImagePainterState extends State<ImagePainter> {
   Widget _buildControls() {
     return Container(
       padding: const EdgeInsets.all(4),
-      width: widget.height ?? double.maxFinite,
       color: Colors.transparent,
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [
-            AnimatedBuilder(
+      child: Row(
+        children: [
+          AnimatedBuilder(
+            animation: _controller,
+            builder: (_, __) {
+              final icon = paintModes(textDelegate)
+                  .firstWhere((item) => item.mode == _controller.mode)
+                  .icon;
+              return Container(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                margin: EdgeInsets.only(left: 8),
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color.fromARGB(255, 57, 55, 55)),
+                child: PopupMenuButton(
+                  tooltip: textDelegate.changeMode,
+                  shape: ContinuousRectangleBorder(
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                  icon: Icon(icon, color: Colors.white),
+                  itemBuilder: (_) => [_showOptionsRow()],
+                ),
+              );
+            },
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            margin: EdgeInsets.only(left: 8),
+            decoration: BoxDecoration(
+                shape: BoxShape.circle, color: Color.fromARGB(255, 57, 55, 55)),
+            child: IconButton(
+                icon:
+                    const Icon(Icons.text_fields_rounded, color: Colors.white),
+                onPressed: _openTextDialog),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            margin: EdgeInsets.only(left: 8),
+            decoration: BoxDecoration(
+                shape: BoxShape.circle, color: Color.fromARGB(255, 57, 55, 55)),
+            child: PopupMenuButton(
+              tooltip: textDelegate.changeBrushSize,
+              shape: ContinuousRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              icon: widget.brushIcon ?? Icon(Icons.brush, color: Colors.white),
+              itemBuilder: (_) => [_showRangeSlider()],
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            margin: EdgeInsets.only(left: 8),
+            decoration: BoxDecoration(
+                shape: BoxShape.circle, color: Color.fromARGB(255, 57, 55, 55)),
+            child: AnimatedBuilder(
               animation: _controller,
               builder: (_, __) {
-                final icon = paintModes(textDelegate)
-                    .firstWhere((item) => item.mode == _controller.mode)
-                    .icon;
-                return Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
-                  margin: EdgeInsets.only(left: 8),
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Color.fromARGB(255, 57, 55, 55)),
-                  child: PopupMenuButton(
-                    tooltip: textDelegate.changeMode,
-                    shape: ContinuousRectangleBorder(
-                      borderRadius: BorderRadius.circular(40),
-                    ),
-                    icon: Icon(icon, color: Colors.white),
-                    itemBuilder: (_) => [_showOptionsRow()],
+                return PopupMenuButton(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  shape: ContinuousRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
                   ),
+                  tooltip: textDelegate.changeColor,
+                  icon: Container(
+                    child: widget.colorIcon ??
+                        Container(
+                          padding: const EdgeInsets.all(2.0),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.white70),
+                            color: _controller.color,
+                          ),
+                        ),
+                  ),
+                  itemBuilder: (_) => [_showColorPicker()],
                 );
               },
             ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 4),
-              margin: EdgeInsets.only(left: 8),
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color.fromARGB(255, 57, 55, 55)),
-              child: IconButton(
-                  icon: const Icon(Icons.text_fields_rounded,
-                      color: Colors.white),
-                  onPressed: _openTextDialog),
+          ),
+          //Expanded(child: SizedBox()),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            margin: EdgeInsets.only(left: 8),
+            decoration: BoxDecoration(
+                shape: BoxShape.circle, color: Color.fromARGB(255, 57, 55, 55)),
+            child: IconButton(
+              tooltip: textDelegate.undo,
+              icon: widget.undoIcon ?? Icon(Icons.reply, color: Colors.white),
+              onPressed: () => _controller.undo(),
             ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 4),
-              margin: EdgeInsets.only(left: 8),
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color.fromARGB(255, 57, 55, 55)),
-              child: PopupMenuButton(
-                tooltip: textDelegate.changeBrushSize,
-                shape: ContinuousRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                icon:
-                    widget.brushIcon ?? Icon(Icons.brush, color: Colors.white),
-                itemBuilder: (_) => [_showRangeSlider()],
-              ),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            margin: EdgeInsets.only(left: 8),
+            decoration: BoxDecoration(
+                shape: BoxShape.circle, color: Color.fromARGB(255, 57, 55, 55)),
+            child: IconButton(
+              tooltip: textDelegate.clearAllProgress,
+              icon:
+                  widget.clearAllIcon ?? Icon(Icons.clear, color: Colors.white),
+              onPressed: () => widget.onSave != null
+                  ? widget.onSave!()
+                  : _controller.clear(),
             ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 4),
-              margin: EdgeInsets.only(left: 8),
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color.fromARGB(255, 57, 55, 55)),
-              child: AnimatedBuilder(
-                animation: _controller,
-                builder: (_, __) {
-                  return PopupMenuButton(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    shape: ContinuousRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    tooltip: textDelegate.changeColor,
-                    icon: Container(
-                      child: widget.colorIcon ??
-                          Container(
-                            padding: const EdgeInsets.all(2.0),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(color: Colors.white70),
-                              color: _controller.color,
-                            ),
-                          ),
-                    ),
-                    itemBuilder: (_) => [_showColorPicker()],
-                  );
-                },
-              ),
-            ),
-            //Expanded(child: SizedBox()),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 4),
-              margin: EdgeInsets.only(left: 8),
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color.fromARGB(255, 57, 55, 55)),
-              child: IconButton(
-                tooltip: textDelegate.undo,
-                icon: widget.undoIcon ?? Icon(Icons.reply, color: Colors.white),
-                onPressed: () => _controller.undo(),
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 4),
-              margin: EdgeInsets.only(left: 8),
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color.fromARGB(255, 57, 55, 55)),
-              child: IconButton(
-                tooltip: textDelegate.clearAllProgress,
-                icon: widget.clearAllIcon ??
-                    Icon(Icons.clear, color: Colors.white),
-                onPressed: () => widget.onSave != null
-                    ? widget.onSave!()
-                    : _controller.clear(),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
