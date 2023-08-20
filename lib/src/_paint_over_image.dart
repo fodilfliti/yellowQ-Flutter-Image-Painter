@@ -794,7 +794,7 @@ class ImagePainterState extends State<ImagePainter> {
   Widget _buildControls() {
     return Container(
       padding: const EdgeInsets.all(4),
-      color: Colors.transparent,
+      color: Colors.transparent, //grey[200],
       child: Row(
         children: [
           AnimatedBuilder(
@@ -874,7 +874,7 @@ class ImagePainterState extends State<ImagePainter> {
               },
             ),
           ),
-          //Expanded(child: SizedBox()),
+          const Spacer(),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 4),
             margin: EdgeInsets.only(left: 8),
