@@ -794,16 +794,15 @@ class ImagePainterState extends State<ImagePainter> {
   Widget _buildControls() {
     return SizedBox(
       width: widget.width ?? double.maxFinite,
-      height: 80,
-      child: FittedBox(
-        fit: BoxFit.scaleDown,
-        child: Container(
-          height: 80,
-          padding: const EdgeInsets.all(4),
-          color: Colors.transparent,
-          child: Row(
-            children: [
-              AnimatedBuilder(
+      height: 100,
+      child: Container(
+        padding: const EdgeInsets.all(4),
+        color: Colors.transparent,
+        child: Row(
+          children: [
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              child: AnimatedBuilder(
                 animation: _controller,
                 builder: (_, __) {
                   final icon = paintModes(textDelegate)
@@ -826,7 +825,10 @@ class ImagePainterState extends State<ImagePainter> {
                   );
                 },
               ),
-              Container(
+            ),
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 4),
                 margin: EdgeInsets.only(left: 8),
                 decoration: BoxDecoration(
@@ -837,7 +839,10 @@ class ImagePainterState extends State<ImagePainter> {
                         color: Colors.white),
                     onPressed: _openTextDialog),
               ),
-              Container(
+            ),
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 4),
                 margin: EdgeInsets.only(left: 8),
                 decoration: BoxDecoration(
@@ -853,7 +858,10 @@ class ImagePainterState extends State<ImagePainter> {
                   itemBuilder: (_) => [_showRangeSlider()],
                 ),
               ),
-              Container(
+            ),
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 4),
                 margin: EdgeInsets.only(left: 8),
                 decoration: BoxDecoration(
@@ -884,8 +892,11 @@ class ImagePainterState extends State<ImagePainter> {
                   },
                 ),
               ),
-              const Spacer(),
-              Container(
+            ),
+            Expanded(child: SizedBox()),
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 4),
                 margin: EdgeInsets.only(left: 8),
                 decoration: BoxDecoration(
@@ -898,7 +909,10 @@ class ImagePainterState extends State<ImagePainter> {
                   onPressed: () => _controller.undo(),
                 ),
               ),
-              Container(
+            ),
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 4),
                 margin: EdgeInsets.only(left: 8),
                 decoration: BoxDecoration(
@@ -913,8 +927,8 @@ class ImagePainterState extends State<ImagePainter> {
                       : _controller.clear(),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
