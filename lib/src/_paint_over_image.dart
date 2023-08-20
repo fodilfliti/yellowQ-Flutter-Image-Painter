@@ -796,40 +796,35 @@ class ImagePainterState extends State<ImagePainter> {
       padding: const EdgeInsets.all(4),
       width: widget.width,
       color: Colors.transparent, //grey[200],
-      child: SizedBox(
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
         //SingleChildScrollView(
         // scrollDirection: Axis.horizontal,
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            SizedBox(
-              height: 25,
-              width: 25,
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: AnimatedBuilder(
-                  animation: _controller,
-                  builder: (_, __) {
-                    final icon = paintModes(textDelegate)
-                        .firstWhere((item) => item.mode == _controller.mode)
-                        .icon;
-                    return Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 4),
-                      margin: EdgeInsets.only(left: 8),
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color.fromARGB(255, 57, 55, 55)),
-                      child: PopupMenuButton(
-                        tooltip: textDelegate.changeMode,
-                        shape: ContinuousRectangleBorder(
-                          borderRadius: BorderRadius.circular(40),
-                        ),
-                        icon: Icon(icon, color: Colors.white),
-                        itemBuilder: (_) => [_showOptionsRow()],
-                      ),
-                    );
-                  },
-                ),
-              ),
+            AnimatedBuilder(
+              animation: _controller,
+              builder: (_, __) {
+                final icon = paintModes(textDelegate)
+                    .firstWhere((item) => item.mode == _controller.mode)
+                    .icon;
+                return Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  margin: EdgeInsets.only(left: 8),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color.fromARGB(255, 57, 55, 55)),
+                  child: PopupMenuButton(
+                    tooltip: textDelegate.changeMode,
+                    shape: ContinuousRectangleBorder(
+                      borderRadius: BorderRadius.circular(40),
+                    ),
+                    icon: Icon(icon, color: Colors.white),
+                    itemBuilder: (_) => [_showOptionsRow()],
+                  ),
+                );
+              },
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -888,6 +883,9 @@ class ImagePainterState extends State<ImagePainter> {
                   );
                 },
               ),
+            ),
+            SizedBox(
+              width: 25,
             ),
             // const Spacer(),
             Container(
