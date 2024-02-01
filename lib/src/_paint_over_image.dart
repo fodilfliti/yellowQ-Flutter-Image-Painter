@@ -903,6 +903,11 @@ class ImagePainterState extends State<ImagePainter> {
             AnimatedBuilder(
                 animation: _controller,
                 builder: (_, __) {
+                  final f = _controller.mode != PaintMode.none
+                      ? _controller.setMode(PaintMode.none)
+                      : widget.onSave != null
+                          ? widget.onSave!()
+                          : _controller.clear();
                   return Container(
                     padding: const EdgeInsets.symmetric(horizontal: 4),
                     margin: EdgeInsets.only(left: 8),
@@ -918,13 +923,7 @@ class ImagePainterState extends State<ImagePainter> {
                             )
                           : (widget.clearAllIcon ??
                               Icon(Icons.clear, color: Colors.white)),
-                      onPressed: () => _controller.mode != PaintMode.none
-                          ? () {
-                              _controller.setMode(PaintMode.none);
-                            }
-                          : widget.onSave != null
-                              ? widget.onSave!()
-                              : _controller.clear(),
+                      onPressed: () => f,
                     ),
                   );
                 }),
