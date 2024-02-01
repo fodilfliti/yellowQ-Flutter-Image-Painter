@@ -908,11 +908,20 @@ class ImagePainterState extends State<ImagePainter> {
                   color: Color.fromARGB(255, 57, 55, 55)),
               child: IconButton(
                 tooltip: textDelegate.clearAllProgress,
-                icon: widget.clearAllIcon ??
-                    Icon(Icons.clear, color: Colors.white),
-                onPressed: () => widget.onSave != null
-                    ? widget.onSave!()
-                    : _controller.clear(),
+                icon: _controller.mode != PaintMode.none
+                    ? Text(
+                        "OK",
+                        style: TextStyle(color: Colors.white),
+                      )
+                    : (widget.clearAllIcon ??
+                        Icon(Icons.clear, color: Colors.white)),
+                onPressed: () => _controller.mode != PaintMode.none
+                    ? () {
+                        _controller.setMode(PaintMode.none);
+                      }
+                    : widget.onSave != null
+                        ? widget.onSave!()
+                        : _controller.clear(),
               ),
             ),
           ],
